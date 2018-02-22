@@ -36,7 +36,7 @@ python github_traffic_stats.py collect -r pcapplusplus -u seladb -p ******
  
  Usage:
  
- `python github_traffic_stats.py view -r [github-repo]
+ `python github_traffic_stats.py view -r [github-repo]`
  
  Where:
  - `[github-repo]` is the GitHub repository to pull stats on
