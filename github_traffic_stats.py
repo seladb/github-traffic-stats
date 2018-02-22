@@ -53,7 +53,7 @@ def export_to_csv(csv_filename, db):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-a', '--action', required=True, choices=['collect', 'view', 'exportcsv'])
+    parser.add_argument('action', choices=['collect', 'view', 'exportcsv'])
     parser.add_argument('-u', '--github_user', action='store')
     parser.add_argument('-p', '--github_password', action='store')
     parser.add_argument('-r', '--github_repo', action='store')
@@ -62,16 +62,17 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if args.github_repo is None:
-        sys.exit('You need to provide github repo: -r|--github_repo')
-
     db = pickledb.load('{repo}_views.db'.format(repo=args.github_repo), False)
 
     if args.action == 'view':
+        if args.github_repo is None:
+            sys.exit('You need to provide github repo: -r|--github_repo')
         view(db)
     elif args.action == 'exportcsv':
+        if args.github_repo is None:
+            sys.exit('You need to provide github repo: -r|--github_repo')
         export_to_csv('{repo}.csv'.format(repo=args.github_repo), db)
     else:
-        if args.github_user is None or args.github_password is None:
+        if args.github_repo is None or args.github_user is None or args.github_password is None:
             sys.exit('You need to provide github repo, username and password: -r|--github_repo, -u|--github_user, -p|--github_password');
         collect(user=args.github_user, passwd=args.github_password, repo=args.github_repo)
