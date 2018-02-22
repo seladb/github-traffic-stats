@@ -1,0 +1,3 @@
+githubpy==1.1.0
+pickleDB==0.6.2
+simplejson==3.13.2
