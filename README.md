@@ -71,7 +71,7 @@ Export the DB into a csv file with the format of `[repo_name].csv`
 
 Usage:
  
- `python github_traffic_stats.py exportcsv -r [github-repo]
+ `python github_traffic_stats.py exportcsv -r [github-repo]`
  
  Where:
  - `[github-repo]` is the GitHub repository to pull stats on
