@@ -7,20 +7,27 @@ import sys
 
 def collect(user, passwd, repo):
     gh = github.GitHub(username=user, password=passwd)
+    try:
+        gh.repos(user, repo).get()
+    except:
+        sys.exit('Username "' + user + '" or repo "' + repo + '" not found in github')
     views_14_days = gh.repos(user, repo).traffic.views.get()
+    found_new_data = False
     for view_per_day in views_14_days['views']:
         timestamp = view_per_day['timestamp']
         data = { 'uniques': view_per_day['uniques'], 'count': view_per_day['count']}
         if db.get(timestamp) is None:
-            
             db.set(timestamp, json.dumps(data))
             print timestamp, data
+            found_new_data = True
         else:
             db_data = json.loads(db.get(timestamp))
             if db_data['uniques'] < data['uniques']:
                 db.set(timestamp, json.dumps(data))
                 print timestamp, data
-
+                found_new_data = True
+    if not found_new_data:
+        print 'No new traffic data was found for ' + user + '/' + repo
     db.dump()
 
 
