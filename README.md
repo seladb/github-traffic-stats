@@ -16,6 +16,8 @@ Collect last 14-days traffic data from GitHub and store it in the DB. The DB is 
 
 Usage:
 
+#### Connecting using username & password: ####
+
 `python github_traffic_stats.py collect -r [github-repo] -u [github-user] -p [github-password]`
 
 Where:
@@ -30,7 +32,43 @@ python github_traffic_stats.py collect -r pcapplusplus -u seladb -p ******
 2018-02-22T00:00:00Z {'count': 153, 'uniques': 45}
 ```
 
- ### View ###
+
+#### Connecting using username & password to an organization repo: ####
+
+`python github_traffic_stats.py collect -r [github-repo] -u [github-user] -p [github-password] -o [github-org]`
+
+Where:
+ - `[github-repo]` is the GitHub repository to pull stats on
+ - `[github-user]` is the GitHub user who has access to traffic stats in this repo
+ - `[github-password]` is the password of the GitHub user
+ - `[github-org]` is the repo organization (for example: google for repo protobuf)
+
+Example:
+
+```
+python github_traffic_stats.py collect -r protobuf -u google-employee1234 -p ****** -o google
+2018-02-22T00:00:00Z {'count': 10153, 'uniques': 1045}
+```
+
+
+#### Connecting using GitHub access token: ####
+
+`python github_traffic_stats.py collect -r [github-repo] -t [github-access-token] -o [repo-org]`
+
+Where:
+ - `[github-repo]` is the GitHub repository to pull stats on
+ - `[github-access-token]` is the GitHub personal access token
+ - `[github-org]` is the repo organization or the user who owns the repo (for example: google for repo protobuf or seladb for PcapPlusPlus)
+
+Example:
+
+```
+python github_traffic_stats.py collect -r pcapplusplus -t ****** -o seladb
+2018-02-22T00:00:00Z {'count': 153, 'uniques': 45}
+```
+
+
+### View ###
  
  Open the DB file, read all the data stored and output is to console, sorted by timestamp.
  
