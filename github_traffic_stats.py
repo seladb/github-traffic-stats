@@ -5,7 +5,7 @@ import argparse
 import csv
 import sys
 
-def collect(user, passwd, token, repo, org):
+def collect(db, user, passwd, token, repo, org):
     if org is None:
         org = user
 
@@ -64,7 +64,7 @@ def export_to_csv(csv_filename, db):
             csvwriter.writerow({'timestamp': ts, 'count': json_data['count'], 'uniques': json_data['uniques']})
         print csv_filename + ' written to disk' 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('action', choices=['collect', 'view', 'exportcsv'])
     parser.add_argument('-u', '--github_user', action='store')
@@ -94,4 +94,7 @@ if __name__ == "__main__":
             sys.exit('You need to provide either github username & password or github access token: -u|--github_user, -p|--github_password, -t|--github_access_token');
         if args.github_access_token is not None and args.github_user is None and args.github_org is None:
             sys.exit('When providing access token, please provide either repo user or repo org: -u|--github_user, -o|--github_org')
-        collect(user=args.github_user, passwd=args.github_password, token=args.github_access_token, repo=args.github_repo, org=args.github_org)
+        collect(db=db, user=args.github_user, passwd=args.github_password, token=args.github_access_token, repo=args.github_repo, org=args.github_org)
+
+if __name__ == "__main__":
+    main()
