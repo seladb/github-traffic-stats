@@ -124,6 +124,11 @@ pcapplusplus.csv written to disk
 
 The requirements for this script are described in [requirements.txt](https://github.com/seladb/github-traffic-stats/blob/master/requirements.txt).
 
+Installation with pip:
+```
+pip install github_traffic_stats2
+```
+
 Installation without virtualenv:
 ```
 python pip install -r requirements.txt
