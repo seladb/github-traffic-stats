@@ -122,6 +122,8 @@ pcapplusplus.csv written to disk
 
 ## Installation ##
 
+This script requires Python 2.7, I haven't tested it on Python 3 yet.
+
 The requirements for this script are described in [requirements.txt](https://github.com/seladb/github-traffic-stats/blob/master/requirements.txt).
 
 ### Installation with pip: ###
