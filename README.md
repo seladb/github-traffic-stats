@@ -29,7 +29,7 @@ Example:
 
 ```
 python github_traffic_stats.py collect -r pcapplusplus -u seladb -p ******
-2018-02-22T00:00:00Z {'count': 153, 'uniques': 45}
+2020-04-28 {'count': 119, 'uniques': 59}
 ```
 
 
@@ -47,7 +47,7 @@ Example:
 
 ```
 python github_traffic_stats.py collect -r protobuf -u google-employee1234 -p ****** -o google
-2018-02-22T00:00:00Z {'count': 10153, 'uniques': 1045}
+2020-05-08 {'count': 110, 'uniques': 41}
 ```
 
 
@@ -64,7 +64,7 @@ Example:
 
 ```
 python github_traffic_stats.py collect -r pcapplusplus -t ****** -o seladb
-2018-02-22T00:00:00Z {'count': 153, 'uniques': 45}
+2020-05-08 {'count': 110, 'uniques': 41}
 ```
 
 
@@ -82,25 +82,22 @@ python github_traffic_stats.py collect -r pcapplusplus -t ****** -o seladb
 Example:
 ```
 python github_traffic_stats.py view -r pcapplusplus
-2018-02-05T00:00:00Z {"count": 200, "uniques": 30}
-2018-02-06T00:00:00Z {"count": 150, "uniques": 35}
-2018-02-07T00:00:00Z {"count": 220, "uniques": 40}
-2018-02-08T00:00:00Z {"count": 260, "uniques": 45}
-2018-02-09T00:00:00Z {"count": 240, "uniques": 30}
-2018-02-10T00:00:00Z {"count": 50, "uniques": 20}
-2018-02-11T00:00:00Z {"count": 80, "uniques": 30}
-2018-02-12T00:00:00Z {"count": 150, "uniques": 50}
-2018-02-13T00:00:00Z {"count": 200, "uniques": 60}
-2018-02-14T00:00:00Z {"count": 280, "uniques": 20}
-2018-02-15T00:00:00Z {"count": 100, "uniques": 40}
-2018-02-16T00:00:00Z {"count": 250, "uniques": 30}
-2018-02-17T00:00:00Z {"count": 200, "uniques": 35}
-2018-02-18T00:00:00Z {"count": 200, "uniques": 65}
-2018-02-19T00:00:00Z {"count": 250, "uniques": 100}
-2018-02-20T00:00:00Z {"count": 150, "uniques": 40}
-2018-02-21T00:00:00Z {"count": 150, "uniques": 50}
-2018-02-22T00:00:00Z {"count": 150, "uniques": 35}
-18 elements
+2020-04-27 {"count": 7, "uniques": 6}
+2020-04-28 {"count": 119, "uniques": 59}
+2020-04-29 {"count": 143, "uniques": 58}
+2020-04-30 {"count": 186, "uniques": 55}
+2020-05-01 {"count": 77, "uniques": 40}
+2020-05-02 {"count": 49, "uniques": 33}
+2020-05-03 {"count": 61, "uniques": 22}
+2020-05-04 {"count": 120, "uniques": 63}
+2020-05-05 {"count": 172, "uniques": 73}
+2020-05-06 {"count": 110, "uniques": 47}
+2020-05-07 {"count": 108, "uniques": 49}
+2020-05-08 {"count": 110, "uniques": 41}
+2020-05-09 {"count": 76, "uniques": 26}
+2020-05-10 {"count": 86, "uniques": 34}
+2020-05-11 {"count": 59, "uniques": 37}
+15 elements
 ```
 
 ### exportcsv ###
