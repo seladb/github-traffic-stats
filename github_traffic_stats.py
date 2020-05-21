@@ -27,11 +27,11 @@ def collect(db, user, passwd, token, repo, org):
             sys.exit('Username "' + user + '" does not have collaborator permissions in repo "' + repo + '"')
     views_14_days = gh.repos(org, repo).traffic.views.get()
     found_new_data = False
-    time_format = "%Y-%m-%d"
+    
     for view_per_day in views_14_days['views']:
         timestamp = view_per_day['timestamp']
         timestamp = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
-        timestamp = timestamp.strftime(time_format)
+        timestamp = timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
         data = { 'uniques': view_per_day['uniques'], 'count': view_per_day['count']}
         if db.get(timestamp) is None or db.get(timestamp) is False:
             db.set(timestamp, json.dumps(data))
