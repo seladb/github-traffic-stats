@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
   name='github_traffic_stats2',
-  version='18.03.1',
+  version='20.05.0',
   description='A project to pull and store traffic stats for GitHub projects using GitHub API',
   author='seladb',
   author_email='pcapplusplus@gmail.com',
