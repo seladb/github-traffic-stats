@@ -64,7 +64,7 @@ Example:
 
 ```
 python github_traffic_stats.py collect -r pcapplusplus -t ****** -o seladb
-2018-02-22T00:00:00Z {'count': 153, 'uniques': 45}
+2020-05-15T00:00:00Z {'uniques': 41, 'count': 162}
 ```
 
 
@@ -82,25 +82,22 @@ python github_traffic_stats.py collect -r pcapplusplus -t ****** -o seladb
 Example:
 ```
 python github_traffic_stats.py view -r pcapplusplus
-2018-02-05T00:00:00Z {"count": 200, "uniques": 30}
-2018-02-06T00:00:00Z {"count": 150, "uniques": 35}
-2018-02-07T00:00:00Z {"count": 220, "uniques": 40}
-2018-02-08T00:00:00Z {"count": 260, "uniques": 45}
-2018-02-09T00:00:00Z {"count": 240, "uniques": 30}
-2018-02-10T00:00:00Z {"count": 50, "uniques": 20}
-2018-02-11T00:00:00Z {"count": 80, "uniques": 30}
-2018-02-12T00:00:00Z {"count": 150, "uniques": 50}
-2018-02-13T00:00:00Z {"count": 200, "uniques": 60}
-2018-02-14T00:00:00Z {"count": 280, "uniques": 20}
-2018-02-15T00:00:00Z {"count": 100, "uniques": 40}
-2018-02-16T00:00:00Z {"count": 250, "uniques": 30}
-2018-02-17T00:00:00Z {"count": 200, "uniques": 35}
-2018-02-18T00:00:00Z {"count": 200, "uniques": 65}
-2018-02-19T00:00:00Z {"count": 250, "uniques": 100}
-2018-02-20T00:00:00Z {"count": 150, "uniques": 40}
-2018-02-21T00:00:00Z {"count": 150, "uniques": 50}
-2018-02-22T00:00:00Z {"count": 150, "uniques": 35}
-18 elements
+2020-05-15T00:00:00Z {"uniques": 41, "count": 162}
+2020-05-16T00:00:00Z {"uniques": 32, "count": 149}
+2020-05-17T00:00:00Z {"uniques": 38, "count": 177}
+2020-05-18T00:00:00Z {"uniques": 63, "count": 291}
+2020-05-19T00:00:00Z {"uniques": 92, "count": 412}
+2020-05-20T00:00:00Z {"uniques": 68, "count": 277}
+2020-05-21T00:00:00Z {"uniques": 75, "count": 381}
+2020-05-22T00:00:00Z {"uniques": 55, "count": 323}
+2020-05-23T00:00:00Z {"uniques": 36, "count": 185}
+2020-05-24T00:00:00Z {"uniques": 32, "count": 193}
+2020-05-25T00:00:00Z {"uniques": 75, "count": 317}
+2020-05-26T00:00:00Z {"uniques": 67, "count": 360}
+2020-05-27T00:00:00Z {"uniques": 71, "count": 403}
+2020-05-28T00:00:00Z {"uniques": 67, "count": 340}
+2020-05-29T00:00:00Z {"uniques": 18, "count": 82}
+15 elements
 ```
 
 ### exportcsv ###
@@ -122,7 +119,7 @@ pcapplusplus.csv written to disk
 
 ## Installation ##
 
-This script requires Python 2.7, I haven't tested it on Python 3 yet.
+This script requires Python 3 (Python 2.7 is no longer supported).
 
 The requirements for this script are described in [requirements.txt](https://github.com/seladb/github-traffic-stats/blob/master/requirements.txt).
 
@@ -146,9 +143,8 @@ Installing pip................done.
 $ source venv/bin/activate
 (venv)$ pip install -r requirements.txt
 Collecting githubpy==1.1.0 (from -r requirements.txt (line 1))
-Collecting pickleDB==0.6.2 (from -r requirements.txt (line 2))
-Collecting simplejson==3.13.2 (from -r requirements.txt (line 3))
-  Using cached simplejson-3.13.2-cp27-cp27m-win32.whl
+Collecting pickleDB==0.9.2 (from -r requirements.txt (line 2))
+Collecting simplejson==3.17.0 (from -r requirements.txt (line 3))
 Installing collected packages: githubpy, simplejson, pickleDB
 Successfully installed githubpy-1.1.0 pickleDB-0.6.2 simplejson-3.13.2
 (venv)$

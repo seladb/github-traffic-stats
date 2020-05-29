@@ -11,7 +11,7 @@ def collect(db, user, passwd, token, repo, org):
 
     if token is not None:
         user = None
-        password = None
+        passwd = None
 
     gh = github.GitHub(username=user, password=passwd, access_token=token)
     try:
@@ -29,40 +29,37 @@ def collect(db, user, passwd, token, repo, org):
     for view_per_day in views_14_days['views']:
         timestamp = view_per_day['timestamp']
         data = { 'uniques': view_per_day['uniques'], 'count': view_per_day['count']}
-        if db.get(timestamp) is None:
+        if db.get(timestamp) is None or db.get(timestamp) is False:
             db.set(timestamp, json.dumps(data))
-            print timestamp, data
+            print(timestamp, data)
             found_new_data = True
         else:
             db_data = json.loads(db.get(timestamp))
             if db_data['uniques'] < data['uniques']:
                 db.set(timestamp, json.dumps(data))
-                print timestamp, data
+                print(timestamp, data)
                 found_new_data = True
     if not found_new_data:
-        print 'No new traffic data was found for ' + org + '/' + repo
+        print('No new traffic data was found for ' + org + '/' + repo)
     db.dump()
 
 
 def view(db):
-    sorted_by_ts = db.getall()
-    sorted_by_ts.sort()
-    for ts in sorted_by_ts:
-        print ts, db.get(ts)
-    print len(sorted_by_ts), 'elements'
+    timestamps = db.getall()
+    for ts in sorted(timestamps):
+        print(ts, db.get(ts))
+    print(len(timestamps), 'elements')
 
 
 def export_to_csv(csv_filename, db):
-    with open(csv_filename, 'wb') as csvfile:
+    with open(csv_filename, 'w', newline='') as csvfile:
         fieldnames = ['timestamp', 'count', 'uniques']
         csvwriter = csv.DictWriter(csvfile, delimiter=',', fieldnames=fieldnames)
         csvwriter.writeheader()
-        sorted_by_ts = db.getall()
-        sorted_by_ts.sort()
-        for ts in sorted_by_ts:
+        for ts in sorted(db.getall()):
             json_data = json.loads(db.get(ts))
             csvwriter.writerow({'timestamp': ts, 'count': json_data['count'], 'uniques': json_data['uniques']})
-        print csv_filename + ' written to disk' 
+        print(csv_filename + ' written to disk')
 
 def main():
     parser = argparse.ArgumentParser()
