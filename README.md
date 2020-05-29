@@ -1,4 +1,7 @@
 # github-traffic-stats
+
+![Python test](https://github.com/seladb/github-traffic-stats/workflows/Python%20test/badge.svg)
+
 A small Python project to pull and store traffic stats for GitHub projects using GitHub API.
 
 Currently GitHub provides only 14 days of traffic data to a repo. This data includes the number of views and the number of unique visitors for each day. 
@@ -8,7 +11,7 @@ This script aims to collect and aggregate the data and then store it in a simple
 
 ## Usage ##
 
-There are 3 modes of opetation: **collect**, **view** and **exportcsv**
+There are 3 modes of operation: **collect**, **view** and **exportcsv**
 
 ### Collect ###
 
@@ -16,55 +19,38 @@ Collect last 14-days traffic data from GitHub and store it in the DB. The DB is 
 
 Usage:
 
-#### Connecting using username & password: ####
+#### Collect traffic data for a repo: ####
 
-`python github_traffic_stats.py collect -r [github-repo] -u [github-user] -p [github-password]`
+`python github_traffic_stats.py collect -u [github-user] -r [github-repo] -t [github-access-token]`
 
 Where:
- - `[github-repo]` is the GitHub repository to pull stats on
  - `[github-user]` is the GitHub user who owns this repo
- - `[github-password]` is the password of the GitHub user
+ - `[github-repo]` is the GitHub repository to pull stats on
+ - `[github-access-token]` is the GitHub personal access token
 
 Example:
 
 ```
-python github_traffic_stats.py collect -r pcapplusplus -u seladb -p ******
+python github_traffic_stats.py collect -u seladb -r pcapplusplus -t ******
 2018-02-22T00:00:00Z {'count': 153, 'uniques': 45}
 ```
 
 
-#### Connecting using username & password to an organization repo: ####
+#### Collect traffic data for an organization repo: ####
 
-`python github_traffic_stats.py collect -r [github-repo] -u [github-user] -p [github-password] -o [github-org]`
+`python github_traffic_stats.py collect -o [github-org] -u [github-user] -r [github-repo] -t [github-access-token]`
 
 Where:
- - `[github-repo]` is the GitHub repository to pull stats on
- - `[github-user]` is the GitHub user who has access to traffic stats in this repo
- - `[github-password]` is the password of the GitHub user
  - `[github-org]` is the repo organization (for example: google for repo protobuf)
-
-Example:
-
-```
-python github_traffic_stats.py collect -r protobuf -u google-employee1234 -p ****** -o google
-2018-02-22T00:00:00Z {'count': 10153, 'uniques': 1045}
-```
-
-
-#### Connecting using GitHub access token: ####
-
-`python github_traffic_stats.py collect -r [github-repo] -t [github-access-token] -o [repo-org]`
-
-Where:
+ - `[github-user]` is the GitHub user who has access to traffic stats in this repo
  - `[github-repo]` is the GitHub repository to pull stats on
  - `[github-access-token]` is the GitHub personal access token
- - `[github-org]` is the repo organization or the user who owns the repo (for example: google for repo protobuf or seladb for PcapPlusPlus)
 
 Example:
 
 ```
-python github_traffic_stats.py collect -r pcapplusplus -t ****** -o seladb
-2020-05-15T00:00:00Z {'uniques': 41, 'count': 162}
+python github_traffic_stats.py collect -o pcapplusplus -u seladb -r pcapplusplus.github.io -t ******
+2020-05-27T00:00:00Z {"uniques": 2, "count": 6}
 ```
 
 
@@ -146,6 +132,6 @@ Collecting githubpy==1.1.0 (from -r requirements.txt (line 1))
 Collecting pickleDB==0.9.2 (from -r requirements.txt (line 2))
 Collecting simplejson==3.17.0 (from -r requirements.txt (line 3))
 Installing collected packages: githubpy, simplejson, pickleDB
-Successfully installed githubpy-1.1.0 pickleDB-0.6.2 simplejson-3.13.2
+Successfully installed githubpy-1.1.0 pickleDB-0.9.2 simplejson-3.17.0
 (venv)$
 ```
