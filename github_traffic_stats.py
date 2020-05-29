@@ -5,19 +5,15 @@ import argparse
 import csv
 import sys
 
-def collect(db, user, passwd, token, repo, org):
+def collect(db, user, repo, token, org):
     if org is None:
         org = user
 
-    if token is not None:
-        user = None
-        passwd = None
-
-    gh = github.GitHub(username=user, password=passwd, access_token=token)
+    gh = github.GitHub(access_token=token)
     try:
         gh.repos(org, repo).get()
     except:
-        sys.exit('Username/org "' + org + '" or repo "' + repo + '" not found in github')
+        sys.exit('Username/org "' + org + '" or repo "' + repo + '" not found in GitHub')
 
     if user is not None and org != user:
         try:
@@ -65,7 +61,6 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('action', choices=['collect', 'view', 'exportcsv'])
     parser.add_argument('-u', '--github_user', action='store')
-    parser.add_argument('-p', '--github_password', action='store')
     parser.add_argument('-t', '--github_access_token', action='store')
     parser.add_argument('-o', '--github_org', action='store')
     parser.add_argument('-r', '--github_repo', action='store')
@@ -78,20 +73,16 @@ def main():
 
     if args.action == 'view':
         if args.github_repo is None:
-            sys.exit('You need to provide github repo: -r|--github_repo')
+            sys.exit('You need to provide GitHub repo: -r|--github_repo')
         view(db)
     elif args.action == 'exportcsv':
         if args.github_repo is None:
-            sys.exit('You need to provide github repo: -r|--github_repo')
+            sys.exit('You need to provide GitHub repo: -r|--github_repo')
         export_to_csv('{repo}.csv'.format(repo=args.github_repo), db)
     else:
-        if args.github_repo is None:
-            sys.exit('You need to provide github repo: -r|--github_repo')
-        if args.github_access_token is None and (args.github_user is None or args.github_password is None):
-            sys.exit('You need to provide either github username & password or github access token: -u|--github_user, -p|--github_password, -t|--github_access_token');
-        if args.github_access_token is not None and args.github_user is None and args.github_org is None:
-            sys.exit('When providing access token, please provide either repo user or repo org: -u|--github_user, -o|--github_org')
-        collect(db=db, user=args.github_user, passwd=args.github_password, token=args.github_access_token, repo=args.github_repo, org=args.github_org)
+        if args.github_repo is None or args.github_access_token is None or (args.github_user is None and args.github_org is None):
+            sys.exit('Please provide all of the following:\n  GitHub user/org:      -u|--github_user AND/OR -o|--github_org\n  GitHub repo:          -r|--github_repo\n  GitHub access token:  -t|--github_access_token')
+        collect(db=db, user=args.github_user, repo=args.github_repo, token=args.github_access_token, org=args.github_org)
 
 if __name__ == "__main__":
     main()
