@@ -12,7 +12,7 @@ setuptools.setup(
   },
   url='https://github.com/seladb/github-traffic-stats',
   download_url='https://github.com/seladb/github-traffic-stats/archive/master.tar.gz',
-	packages=setuptools.find_packages(),
+  packages=setuptools.find_packages(),
   keywords=['github', 'github-traffic', 'github-api'],
   classifiers=[
     "Programming Language :: Python :: 3",
