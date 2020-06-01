@@ -1,10 +1,14 @@
 import setuptools
 
+with open("README.md", "r") as readme_file:
+  readme = readme_file.read()
 
 setuptools.setup(
   name='github_traffic_stats2',
-  version='20.05.0',
+  version='20.05.1',
   description='A project to pull and store traffic stats for GitHub projects using GitHub API',
+  long_description = readme,
+  long_description_content_type='text/markdown',
   author='seladb',
   author_email='pcapplusplus@gmail.com',
   entry_points={
@@ -19,6 +23,6 @@ setuptools.setup(
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
   ],
-  python_requires='>=3.6',
+  python_requires='>=3',
   install_requires=['githubpy', 'pickledb', 'simplejson'],
 )

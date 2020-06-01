@@ -1,5 +1,7 @@
-# github-traffic-stats
+# GitHub Traffic Stats
 
+![PyPI](https://img.shields.io/pypi/v/github-traffic-stats2)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/github-traffic-stats2)
 ![Python test](https://github.com/seladb/github-traffic-stats/workflows/Python%20test/badge.svg)
 
 A small Python project to pull and store traffic stats for GitHub projects using GitHub API.
@@ -8,6 +10,46 @@ Currently GitHub provides only 14 days of traffic data to a repo. This data incl
 
 But what happens if you want to store and view more than 14 days of data?
 This script aims to collect and aggregate the data and then store it in a simple NoSQL DB which can later be viewed and analyzed.
+
+
+## Table Of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+
+## Installation ##
+
+This script requires Python 3 (Python 2.7 is no longer supported).
+
+The requirements for this script are described in [requirements.txt](https://github.com/seladb/github-traffic-stats/blob/master/requirements.txt).
+
+### Installation with pip: ###
+```
+pip install github_traffic_stats2
+```
+If you choose this option you'll be able to run the script simply by typing `github_traffic_stats`
+
+### Installation without virtualenv: ###
+```
+python pip install -r requirements.txt
+```
+
+### Installation with virtualenv (linux/Mac): ###
+```
+$ virtualenv venv
+New python executable in venv/bin/python
+Installing distribute.........done.
+Installing pip................done.
+$ source venv/bin/activate
+(venv)$ pip install -r requirements.txt
+Collecting githubpy==1.1.0 (from -r requirements.txt (line 1))
+Collecting pickleDB==0.9.2 (from -r requirements.txt (line 2))
+Collecting simplejson==3.17.0 (from -r requirements.txt (line 3))
+Installing collected packages: githubpy, simplejson, pickleDB
+Successfully installed githubpy-1.1.0 pickleDB-0.9.2 simplejson-3.17.0
+(venv)$
+```
 
 ## Usage ##
 
@@ -35,7 +77,6 @@ python github_traffic_stats.py collect -u seladb -r pcapplusplus -t ******
 2018-02-22T00:00:00Z {'count': 153, 'uniques': 45}
 ```
 
-
 #### Collect traffic data for an organization repo: ####
 
 `python github_traffic_stats.py collect -o [github-org] -u [github-user] -r [github-repo] -t [github-access-token]`
@@ -52,7 +93,6 @@ Example:
 python github_traffic_stats.py collect -o pcapplusplus -u seladb -r pcapplusplus.github.io -t ******
 2020-05-27T00:00:00Z {"uniques": 2, "count": 6}
 ```
-
 
 ### View ###
  
@@ -103,35 +143,6 @@ python github_traffic_stats.py exportcsv -r pcapplusplus
 pcapplusplus.csv written to disk
 ```
 
-## Installation ##
+## License
 
-This script requires Python 3 (Python 2.7 is no longer supported).
-
-The requirements for this script are described in [requirements.txt](https://github.com/seladb/github-traffic-stats/blob/master/requirements.txt).
-
-### Installation with pip: ###
-```
-pip install github_traffic_stats2
-```
-If you choose this option you'll be able to run the script simply by typing `github_traffic_stats`
-
-### Installation without virtualenv: ###
-```
-python pip install -r requirements.txt
-```
-
-### Installation with virtualenv (linux/Mac): ###
-```
-$ virtualenv venv
-New python executable in venv/bin/python
-Installing distribute.........done.
-Installing pip................done.
-$ source venv/bin/activate
-(venv)$ pip install -r requirements.txt
-Collecting githubpy==1.1.0 (from -r requirements.txt (line 1))
-Collecting pickleDB==0.9.2 (from -r requirements.txt (line 2))
-Collecting simplejson==3.17.0 (from -r requirements.txt (line 3))
-Installing collected packages: githubpy, simplejson, pickleDB
-Successfully installed githubpy-1.1.0 pickleDB-0.9.2 simplejson-3.17.0
-(venv)$
-```
+github-traffic-stats is released under the [MIT](https://en.wikipedia.org/wiki/MIT_License) license.
