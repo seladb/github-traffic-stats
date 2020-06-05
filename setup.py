@@ -5,18 +5,18 @@ with open("README.md", "r") as readme_file:
 
 setuptools.setup(
   name='github_traffic_stats2',
-  version='20.05.1',
+  version='20.6.5',
   description='A project to pull and store traffic stats for GitHub projects using GitHub API',
   long_description = readme,
   long_description_content_type='text/markdown',
   author='seladb',
   author_email='pcapplusplus@gmail.com',
   entry_points={
-    "console_scripts": ['github_traffic_stats = github_traffic_stats2.github_traffic_stats:main']
+    "console_scripts": ['github_traffic_stats = github_traffic_stats:main']
   },
   url='https://github.com/seladb/github-traffic-stats',
   download_url='https://github.com/seladb/github-traffic-stats/archive/master.tar.gz',
-  packages=setuptools.find_packages(),
+  py_modules=['github_traffic_stats'],
   keywords=['github', 'github-traffic', 'github-api'],
   classifiers=[
     "Programming Language :: Python :: 3",
