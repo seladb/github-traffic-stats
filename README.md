@@ -1,7 +1,7 @@
 # GitHub Traffic Stats
 
-![PyPI](https://img.shields.io/pypi/v/github-traffic-stats2)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/github-traffic-stats2)
+[![PyPI](https://img.shields.io/pypi/v/github-traffic-stats2)](https://pypi.org/project/github-traffic-stats2/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/github-traffic-stats2)](https://www.python.org/download/releases/3.0/)
 ![Python test](https://github.com/seladb/github-traffic-stats/workflows/Python%20test/badge.svg)
 
 A small Python project to pull and store traffic stats for GitHub projects using GitHub API.
