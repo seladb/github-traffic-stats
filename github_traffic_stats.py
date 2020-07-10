@@ -6,10 +6,11 @@ import csv
 import sys
 
 
-def collect(db, user, repo, token, org):
+def collect(user, repo, token, org):
     if org is None:
         org = user
 
+    db = __load_db(repo=repo)
     gh = github.GitHub(access_token=token)
     try:
         gh.repos(org, repo).get()
@@ -41,14 +42,18 @@ def collect(db, user, repo, token, org):
     db.dump()
 
 
-def view(db):
+def view(repo):
+    db = __load_db(repo=repo)
     timestamps = db.getall()
     for ts in sorted(timestamps):
         print(ts, db.get(ts))
     print(len(timestamps), 'elements')
 
 
-def export_to_csv(csv_filename, db):
+def export_to_csv(repo, csv_filename=None):
+    if csv_filename is None:
+        csv_filename='{repo}.csv'.format(repo=repo)
+    db = __load_db(repo=repo)
     with open(csv_filename, 'w', newline='') as csvfile:
         fieldnames = ['timestamp', 'count', 'uniques']
         csvwriter = csv.DictWriter(csvfile, delimiter=',', fieldnames=fieldnames)
@@ -57,6 +62,10 @@ def export_to_csv(csv_filename, db):
             json_data = json.loads(db.get(ts))
             csvwriter.writerow({'timestamp': ts, 'count': json_data['count'], 'uniques': json_data['uniques']})
         print(csv_filename + ' written to disk')
+
+
+def __load_db(repo):
+    return pickledb.load('{repo}_views.db'.format(repo=repo), False)
 
 
 def main():
@@ -71,16 +80,14 @@ def main():
 
     args = parser.parse_args()
 
-    db = pickledb.load('{repo}_views.db'.format(repo=args.github_repo), False)
-
     if args.action == 'view':
         if args.github_repo is None:
             sys.exit('You need to provide GitHub repo: -r|--github_repo')
-        view(db)
+        view(repo=args.github_repo)
     elif args.action == 'exportcsv':
         if args.github_repo is None:
             sys.exit('You need to provide GitHub repo: -r|--github_repo')
-        export_to_csv('{repo}.csv'.format(repo=args.github_repo), db)
+        export_to_csv(repo=args.github_repo)
     else:
         if (args.github_repo is None or
            args.github_access_token is None or
@@ -89,7 +96,7 @@ def main():
                      '  GitHub user/org:      -u|--github_user AND/OR -o|--github_org\n'
                      '  GitHub repo:          -r|--github_repo\n'
                      '  GitHub access token:  -t|--github_access_token')
-        collect(db=db, user=args.github_user, repo=args.github_repo, token=args.github_access_token, org=args.github_org)
+        collect(user=args.github_user, repo=args.github_repo, token=args.github_access_token, org=args.github_org)
 
 
 if __name__ == "__main__":
