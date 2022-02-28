@@ -33,7 +33,7 @@ def collect(user, repo, token, org):
             found_new_data = True
         else:
             db_data = json.loads(db.get(timestamp))
-            if db_data['uniques'] < data['uniques']:
+            if db_data['count'] < data['count']:
                 db.set(timestamp, json.dumps(data))
                 print(timestamp, data)
                 found_new_data = True
